@@ -2,6 +2,6 @@ package mediavisualization;
 
 import student.TestCase;
 
-public class DoublyLinkedListClass extends TestCase {
+public class DoublyLinkedListTest extends TestCase {
 
 }
