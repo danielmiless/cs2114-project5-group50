@@ -1,3 +1,4 @@
+package mediavisualization;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -13,7 +14,7 @@ import java.util.NoSuchElementException;
  * @param <E>
  *            The type of object the class will store
  */
-public class DLList<E> {
+public class DoublyLinkedList<E> {
 
     /**
      * This represents a node in a doubly linked list. This node stores data, a
@@ -109,7 +110,7 @@ public class DLList<E> {
     /**
      * Create a new DLList object.
      */
-    public DLList() {
+    public DoublyLinkedList() {
         init();
     }
 
@@ -117,8 +118,8 @@ public class DLList<E> {
      * Initializes the object to have the head and tail nodes
      */
     private void init() {
-        head = new DLList.Node<E>(null);
-        tail = new DLList.Node<E>(null);
+        head = new DoublyLinkedList.Node<E>(null);
+        tail = new DoublyLinkedList.Node<E>(null);
         head.setNext(tail);
         tail.setPrevious(head);
         size = 0;

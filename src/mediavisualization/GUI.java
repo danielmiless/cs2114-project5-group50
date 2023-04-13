@@ -1,3 +1,5 @@
+package mediavisualization;
+
 /**
  * The GUI class contains all graphical user
  * interface elements and processies.
