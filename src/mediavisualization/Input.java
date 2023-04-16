@@ -9,6 +9,7 @@ public class Input {
     /**
      * Initiates the program when ran by either passing the reader 
      * class the given filename from args, or by giving it the default filename.
+     * @throws FileNotFoundException
      * 
      * @args
      *      File name for the file containing the influencer data
@@ -19,5 +20,6 @@ public class Input {
         }
         else {
             new Reader("SampleInput1_2022.csv");
+        }
     }
 }
