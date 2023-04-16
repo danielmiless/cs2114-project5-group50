@@ -4,10 +4,9 @@ package mediavisualization;
  * The channel class which uses the DoublyLinkedList
  * to store the engagement objects.
  */
-public class Channel extends DoublyLinkedList {
-    // ~ Fields ................................................................
-
-    private String month;
+public class Channel {
+    
+    private Month month;
     private String username;
     private String channelName;
     private String country;
@@ -18,8 +17,7 @@ public class Channel extends DoublyLinkedList {
     private int comments;
     private int views;
 
-    // ~ Constructor ...........................................................
-    public Channel(String month, 
+    public Channel(Month month, 
     String username, 
     String channelName, 
     String country, 
@@ -29,6 +27,7 @@ public class Channel extends DoublyLinkedList {
     int followers, 
     int comments, 
     int views) {
+        this.month = month;
         this.username = username;
         this.channelName = channelName;
         this.country = country;
@@ -39,9 +38,4 @@ public class Channel extends DoublyLinkedList {
         this.comments = comments;
         this.views = views;
     }
-
-    // ~ Methods ...............................................................
-
-
-    // ----------------------------------------------------------
 }
