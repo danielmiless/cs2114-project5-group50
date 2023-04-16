@@ -5,5 +5,7 @@ package mediavisualization;
  * files and employs other classes on that data.
  */
 public class Reader {
-    
+    public Reader(String fileName) {
+        
+    }
 }
