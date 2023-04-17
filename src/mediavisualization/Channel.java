@@ -6,7 +6,7 @@ package mediavisualization;
  */
 public class Channel {
 
-    private Month month;
+    private Months[] months;
     private String username;
     private String channelName;
     private String country;
@@ -27,7 +27,7 @@ public class Channel {
             int followers,
             int comments,
             int views) {
-        this.month = month;
+        this.months = new Months[12];
         this.username = username;
         this.channelName = channelName;
         this.country = country;
@@ -40,12 +40,25 @@ public class Channel {
     }
 
     /**
+     * Set month data.
+     * 
+     * @return
+     */
+    public void setMonthData(int month, int likes, int posts, int followers, int comments, int views) {
+        months[month].setLikes(likes);
+        months[month].setPosts(posts);
+        months[month].setFollowers(followers);
+        months[month].setComments(comments);
+        months[month].setViews(views);
+    }
+
+    /**
      * 
      * @return
      *         The month associated with this channel.
      */
-    public Month getMonth() {
-        return month;
+    public Months[] getMonth() {
+        return months;
     }
 
     /**
