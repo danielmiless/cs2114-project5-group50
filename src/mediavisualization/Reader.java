@@ -97,9 +97,9 @@ public class Reader {
                 followers = Integer.valueOf(arr[arr.length - 3]);
                 comments = Integer.valueOf(arr[arr.length - 2]);
                 views = Integer.valueOf(arr[arr.length - 1]);
-
-                // TODO When list is implemented, add channel to list.
-                new Channel(month, username, channelName, country, mainTopic, likes, posts, followers, comments, views);
+                
+                // Update logic here. If channelname already exists in list, add data to its
+                // month array. Else, create a new channel for it.
             }
         }
         scanner.close();

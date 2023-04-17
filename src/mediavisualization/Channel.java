@@ -11,32 +11,17 @@ public class Channel {
     private String channelName;
     private String country;
     private String mainTopic;
-    private int likes;
-    private int posts;
-    private int followers;
-    private int comments;
-    private int views;
 
-    public Channel(Month month,
+    public Channel(
             String username,
             String channelName,
             String country,
-            String mainTopic,
-            int likes,
-            int posts,
-            int followers,
-            int comments,
-            int views) {
+            String mainTopic) {
         this.months = new Months[12];
         this.username = username;
         this.channelName = channelName;
         this.country = country;
         this.mainTopic = mainTopic;
-        this.likes = likes;
-        this.posts = posts;
-        this.followers = followers;
-        this.comments = comments;
-        this.views = views;
     }
 
     /**
@@ -68,50 +53,5 @@ public class Channel {
      */
     public String getChannelName() {
         return channelName;
-    }
-
-    /**
-     * 
-     * @return
-     *         The number of likes for this channel in the stored month.
-     */
-    public int getLikes() {
-        return likes;
-    }
-
-    /**
-     * 
-     * @return
-     *         The number of posts for this channel in the stored month.
-     */
-    public int getPosts() {
-        return posts;
-    }
-
-    /**
-     * 
-     * @return
-     *         The number of followers for this channel in the stored month.
-     */
-    public int getFollowers() {
-        return followers;
-    }
-
-    /**
-     * 
-     * @return
-     *         The number of comments for this channel in the stored month.
-     */
-    public int getComments() {
-        return comments;
-    }
-
-    /**
-     * 
-     * @return
-     *         The number of views for this channel in the stored month.
-     */
-    public int getViews() {
-        return views;
     }
 }
