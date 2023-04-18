@@ -25,16 +25,23 @@ public class Channel {
     }
 
     /**
-     * Set month data.
+     * Sets the engagement data for a given month.
      * 
-     * @return
+     * @param month
+     *      The month which the data pertains to.
+     * @param likes
+     *      The number of likes in the month.
+     * @param posts
+     * *      The number of posts in the month.
+     * @param followers
+     * *      The number of followers in the month.
+     * @param comments
+     * *      The number of comments in the month.
+     * @param views
+     * *      The number of views in the month.
      */
     public void setMonthData(int month, int likes, int posts, int followers, int comments, int views) {
-        months[month].setLikes(likes);
-        months[month].setPosts(posts);
-        months[month].setFollowers(followers);
-        months[month].setComments(comments);
-        months[month].setViews(views);
+        months[month] = new Months(likes, posts, followers, comments, views);
     }
 
     /**

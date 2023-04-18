@@ -9,14 +9,25 @@ import java.util.Scanner;
  * files and employs other classes on that data.
  */
 public class Reader {
+
+    private ChannelList channelList;
+
+    /**
+     * Creates a new reader and sends a given file to be read.
+     * 
+     * @param fileName
+     *                 The name of the file containing the channel data to be read.
+     * @throws FileNotFoundException
+     */
     public Reader(String fileName) throws FileNotFoundException {
         readFile(fileName);
     }
 
     /**
-     * Extracts the data from each line of the provided file. Then, creates a new
-     * Channel object containing that data and adds it to the linked list containing
-     * all channel objects.
+     * Extracts the data from each line of the provided file. Then, checks if the
+     * channelList contains a channel with the same name. If a channel already
+     * exists, adds the data to the appropriate month. If the channel doesn't exist,
+     * creates a new channel, adds the month data, and adds the channel to the list.
      * 
      * @param fileName
      *                 The name of the file containing the channel data to be read.
@@ -30,7 +41,7 @@ public class Reader {
         while (scanner.hasNextLine()) {
             String[] arr = scanner.nextLine().split(",\\s*");
 
-            Month month;
+            int month;
             String username;
             String channelName;
             String country;
@@ -43,47 +54,47 @@ public class Reader {
 
             switch (arr[0]) {
                 case "January":
-                    month = Month.JAN;
+                    month = 0;
                     break;
                 case "Febraury":
-                    month = Month.FEB;
+                    month = 1;
                     break;
                 case "March":
-                    month = Month.MAR;
+                    month = 2;
                     break;
                 case "April":
-                    month = Month.APR;
+                    month = 3;
                     break;
                 case "May":
-                    month = Month.MAY;
+                    month = 4;
                     break;
                 case "June":
-                    month = Month.JUN;
+                    month = 5;
                     break;
                 case "July":
-                    month = Month.JUL;
+                    month = 6;
                     break;
                 case "August":
-                    month = Month.AUG;
+                    month = 7;
                     break;
                 case "September":
-                    month = Month.SEP;
+                    month = 8;
                     break;
                 case "October":
-                    month = Month.OCT;
+                    month = 9;
                     break;
                 case "November":
-                    month = Month.NOV;
+                    month = 10;
                     break;
                 case "December":
-                    month = Month.DEC;
+                    month = 11;
                     break;
                 default:
-                    month = null; // Should handle ignoring invalid months in conjunction with if statement below.
+                    month = -1; // Should handle ignoring invalid months in conjunction with if statement below.
                     break;
             }
 
-            if (month != null) {
+            if (month > -1) {
                 username = arr[1];
                 channelName = arr[2];
                 if (arr.length == 10) {
@@ -97,9 +108,15 @@ public class Reader {
                 followers = Integer.valueOf(arr[arr.length - 3]);
                 comments = Integer.valueOf(arr[arr.length - 2]);
                 views = Integer.valueOf(arr[arr.length - 1]);
-                
-                // Update logic here. If channelname already exists in list, add data to its
-                // month array. Else, create a new channel for it.
+
+                Channel channel = channelList.getChannel(channelName);
+                if (channel == null) {
+                    Channel newChannel = new Channel(username, channelName, country, mainTopic);
+                    newChannel.setMonthData(month, likes, posts, followers, comments, views);
+                    channelList.add(newChannel);
+                } else {
+                    channel.setMonthData(month, likes, posts, followers, comments, views);
+                }
             }
         }
         scanner.close();
