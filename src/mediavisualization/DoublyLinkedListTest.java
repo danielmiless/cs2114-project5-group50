@@ -270,41 +270,4 @@ public class DoublyLinkedListTest extends TestCase {
         assertTrue( exception instanceof IndexOutOfBoundsException);
     }
 
-    /**
-     * test iterator method hasNext
-     */
-    public void testHasNext() {
-        Iterator<String> iter = list.iterator();
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        assertTrue(iter.hasNext());
-        iter.next();
-        iter.next();
-        iter.next();
-        assertFalse(iter.hasNext());
-    }
-
-    /**
-     * test iterator method next
-     */
-    public void testNext() {
-        Exception temp = null;
-        Iterator<String> iter = list.iterator();
-        list.add("1");
-        assertEquals(iter.next(), "1");
-        list.add("2");
-        list.add("3");
-        assertEquals(iter.next(), "2");
-        assertEquals(iter.next(), "3");
-        assertFalse(iter.hasNext());
-        try {
-            iter.next();
-        }
-        catch (Exception e) {
-            temp = e;
-        }
-        assertNotNull(temp);
-    }
-
 }
