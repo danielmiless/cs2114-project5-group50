@@ -1,4 +1,4 @@
-package mediavisualization;
+package prj5;
 
 /**
  * Stores the data of a channel for each month.

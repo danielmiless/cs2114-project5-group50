@@ -1,4 +1,4 @@
-package mediavisualization;
+package prj5;
 
 /**
  * The GUI class contains all graphical user

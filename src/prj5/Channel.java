@@ -1,4 +1,4 @@
-package mediavisualization;
+package prj5;
 
 /**
  * The channel class which uses the DoublyLinkedList
