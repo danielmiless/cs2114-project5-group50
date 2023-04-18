@@ -1,4 +1,5 @@
 package mediavisualization;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -27,7 +28,7 @@ public class DoublyLinkedList<E> {
      * @version 4/14/2015
      */
     private static class Node<E> {
-        
+
         private Node<E> next;
         private Node<E> previous;
         private E data;
@@ -36,7 +37,7 @@ public class DoublyLinkedList<E> {
          * Creates a new node with the given data
          *
          * @param d
-         *            the data to put inside the node
+         *          the data to put inside the node
          */
         public Node(E d) {
             data = d;
@@ -46,7 +47,7 @@ public class DoublyLinkedList<E> {
          * Sets the node after this node
          *
          * @param n
-         *            the node after this one
+         *          the node after this one
          */
         public void setNext(Node<E> n) {
             next = n;
@@ -56,7 +57,7 @@ public class DoublyLinkedList<E> {
          * Sets the node before this one
          *
          * @param n
-         *            the node before this one
+         *          the node before this one
          */
         public void setPrevious(Node<E> n) {
             previous = n;
@@ -165,10 +166,10 @@ public class DoublyLinkedList<E> {
      * Gets the object at the given position
      *
      * @param index
-     *            where the object is located
+     *              where the object is located
      * @return The object at the given position
      * @throws IndexOutOfBoundsException
-     *             if there no node at the given index
+     *                                   if there no node at the given index
      */
     public E get(int index) {
         return getNodeAtIndex(index).getData();
@@ -178,7 +179,7 @@ public class DoublyLinkedList<E> {
      * Adds a element to the end of the list
      *
      * @param newEntry
-     *            the element to add to the end
+     *                 the element to add to the end
      */
     public void add(E newEntry) {
         add(size(), newEntry);
@@ -188,13 +189,14 @@ public class DoublyLinkedList<E> {
      * Adds the object to the position in the list
      *
      * @param index
-     *            where to add the object
+     *              where to add the object
      * @param obj
-     *            the object to add
+     *              the object to add
      * @throws IndexOutOfBoundsException
-     *             if index is less than zero or greater than size
+     *                                   if index is less than zero or greater than
+     *                                   size
      * @throws IllegalArgumentException
-     *             if obj is null
+     *                                   if obj is null
      */
     public void add(int index, E obj) {
         if (index < 0 || size < index) {
@@ -208,8 +210,7 @@ public class DoublyLinkedList<E> {
         Node<E> nodeAfter;
         if (index == size) {
             nodeAfter = tail;
-        } 
-        else {
+        } else {
             nodeAfter = getNodeAtIndex(index);
         }
 
@@ -229,7 +230,7 @@ public class DoublyLinkedList<E> {
      */
     private Node<E> getNodeAtIndex(int index) {
         if (index < 0 || size() <= index) {
-            throw new IndexOutOfBoundsException("No element exists at " 
+            throw new IndexOutOfBoundsException("No element exists at "
                     + index);
         }
         Node<E> current = head.next(); // as we have a sentinel node
@@ -258,16 +259,16 @@ public class DoublyLinkedList<E> {
             }
             current = current.previous();
         }
-        return -1;  //if we do not find it
+        return -1; // if we do not find it
     }
 
     /**
      * Removes the element at the specified index from the list
      *
      * @param index
-     *            where the object is located
+     *              where the object is located
      * @throws IndexOutOfBoundsException
-     *             if there is not an element at the index
+     *                                   if there is not an element at the index
      * @return true if successful
      */
     public boolean remove(int index) {
@@ -315,7 +316,7 @@ public class DoublyLinkedList<E> {
                 builder.append(element.toString());
                 if (currNode.next != tail) {
                     builder.append(", ");
-                }  
+                }
                 currNode = currNode.next();
             }
         }
@@ -323,7 +324,7 @@ public class DoublyLinkedList<E> {
         builder.append("}");
         return builder.toString();
     }
-    
+
     /**
      * Iterator method creates Iterator object.
      *
@@ -332,7 +333,7 @@ public class DoublyLinkedList<E> {
     public Iterator<E> iterator() {
         return new DLListIterator<E>();
     }
-    
+
     /**
      * Defining an iterator for the DLList class.
      * 
@@ -342,7 +343,7 @@ public class DoublyLinkedList<E> {
      * @param <A> Generic type for the iterator class.
      */
     private class DLListIterator<A> implements Iterator<E> {
-        
+
         private Node<E> next;
         private boolean calledNext;
 
@@ -369,13 +370,13 @@ public class DoublyLinkedList<E> {
          *
          * @return the next value
          * @throws NoSuchElementException
-         *             if there are no nodes left in the list
+         *                                if there are no nodes left in the list
          */
         @Override
         public E next() {
             if (!hasNext()) {
                 throw new NoSuchElementException(
-                    "No nodes are left in the list.");
+                        "No nodes are left in the list.");
             }
 
             calledNext = true;
