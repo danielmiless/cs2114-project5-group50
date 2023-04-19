@@ -28,17 +28,17 @@ public class Channel {
      * Sets the engagement data for a given month.
      * 
      * @param month
-     *      The month which the data pertains to.
+     *                  The month which the data pertains to.
      * @param likes
-     *      The number of likes in the month.
+     *                  The number of likes in the month.
      * @param posts
-     * *      The number of posts in the month.
+     *                  * The number of posts in the month.
      * @param followers
-     * *      The number of followers in the month.
+     *                  * The number of followers in the month.
      * @param comments
-     * *      The number of comments in the month.
+     *                  * The number of comments in the month.
      * @param views
-     * *      The number of views in the month.
+     *                  * The number of views in the month.
      */
     public void setMonthData(int month, int likes, int posts, int followers, int comments, int views) {
         months[month] = new Months(likes, posts, followers, comments, views);
@@ -60,5 +60,38 @@ public class Channel {
      */
     public String getChannelName() {
         return channelName;
+    }
+
+    public double getEngagement(int start, int end) {
+        double comments = 0;
+        double likes = 0;
+        double followers = (double) (months[end].getFollowers());
+        if (followers == 0) {
+            return -1; // Avoid dividing by zero
+        }
+
+        for (int i = start; i <= end; i++) {
+            comments += (double) (months[i].getComments());
+            likes += (double) (months[i].getLikes());
+        }
+
+        return ((comments + likes) / followers) * 100;
+    }
+
+    public double getReach(int start, int end) {
+        double comments = 0;
+        double likes = 0;
+        double views = 0;
+
+        for (int i = start; i <= end; i++) {
+            comments += (double) (months[i].getComments());
+            likes += (double) (months[i].getLikes());
+            views += (double) (months[i].getViews());
+        }
+
+        if (views == 0) {
+            return -1; // Avoid dividing by zero
+        }
+        return ((comments + likes) / views) * 100;
     }
 }
