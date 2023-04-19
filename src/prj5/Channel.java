@@ -4,7 +4,7 @@ package prj5;
  * The channel class which uses the DoublyLinkedList
  * to store the engagement objects.
  */
-public class Channel {
+public class Channel implements Comparable<Channel> {
 
     private Months[] months;
     private String username;
@@ -61,4 +61,18 @@ public class Channel {
     public String getChannelName() {
         return channelName;
     }
+
+    @Override
+    public int compareTo(Channel other) {
+        return Integer.compare(0 /*this.engagement*/, 0/*other.engagement*/);
+    }
+
+    public int compareToEngagementReach(Channel other) {
+        return Integer.compare(0 /*this.engagementreach*/, 0/*other.engagementreach*/);
+    }
+
+    public int compareToChannelName(Channel other) {
+        return CharSequence.compare(this.getChannelName(), other.getChannelName());
+    }
+
 }

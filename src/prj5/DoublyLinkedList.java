@@ -6,32 +6,32 @@ import java.util.NoSuchElementException;
 /**
  * This provides implementation for some of the LList methods.
  *
- * @author Mark Wiggans (mmw125)
- * @version 3/29/15
- * @author Eric Williamson
- * @version 10/30/15
- * @author maellis1
- * @version 11/1/15
- * @param <E>
+ * @author Richard Nguyen (richardn03)
+ * @version 2023.04.19
+ * @author Austin Zary
+ * @version 2023.04.19
+ * @author Daniel Miles
+ * @version 2023.04.19
+ * @param <T>
  *            The type of object the class will store
  */
-public class DoublyLinkedList<E> {
+public class DoublyLinkedList<T> {
 
     /**
      * This represents a node in a doubly linked list. This node stores data, a
      * pointer to the node before it in the list, and a pointer to the node
      * after it in the list
      *
-     * @param <E>
+     * @param <T>
      *            This is the type of object that this class will store
      * @author Mark Wiggans (mmw125)
      * @version 4/14/2015
      */
-    private static class Node<E> {
+    private static class Node<T> {
 
-        private Node<E> next;
-        private Node<E> previous;
-        private E data;
+        private Node<T> next;
+        private Node<T> previous;
+        private T data;
 
         /**
          * Creates a new node with the given data
@@ -39,7 +39,7 @@ public class DoublyLinkedList<E> {
          * @param d
          *          the data to put inside the node
          */
-        public Node(E d) {
+        public Node(T d) {
             data = d;
         }
 
@@ -49,7 +49,7 @@ public class DoublyLinkedList<E> {
          * @param n
          *          the node after this one
          */
-        public void setNext(Node<E> n) {
+        public void setNext(Node<T> n) {
             next = n;
         }
 
@@ -59,7 +59,7 @@ public class DoublyLinkedList<E> {
          * @param n
          *          the node before this one
          */
-        public void setPrevious(Node<E> n) {
+        public void setPrevious(Node<T> n) {
             previous = n;
         }
 
@@ -68,7 +68,7 @@ public class DoublyLinkedList<E> {
          *
          * @return the next node
          */
-        public Node<E> next() {
+        public Node<T> next() {
             return next;
         }
 
@@ -77,7 +77,7 @@ public class DoublyLinkedList<E> {
          *
          * @return the node before this one
          */
-        public Node<E> previous() {
+        public Node<T> previous() {
             return previous;
         }
 
@@ -86,7 +86,7 @@ public class DoublyLinkedList<E> {
          *
          * @return the data in the node
          */
-        public E getData() {
+        public T getData() {
             return data;
         }
     }
@@ -100,13 +100,13 @@ public class DoublyLinkedList<E> {
      * The first node in the list. THIS IS A SENTINEL NODE AND AS SUCH DOES NOT
      * HOLD ANY DATA. REFER TO init()
      */
-    private Node<E> head;
+    private Node<T> head;
 
     /**
      * The last node in the list. THIS IS A SENTINEL NODE AND AS SUCH DOES NOT
      * HOLD ANY DATA. REFER TO init()
      */
-    private Node<E> tail;
+    private Node<T> tail;
 
     /**
      * Create a new DLList object.
@@ -119,8 +119,8 @@ public class DoublyLinkedList<E> {
      * Initializes the object to have the head and tail nodes
      */
     private void init() {
-        head = new DoublyLinkedList.Node<E>(null);
-        tail = new DoublyLinkedList.Node<E>(null);
+        head = new DoublyLinkedList.Node<T>(null);
+        tail = new DoublyLinkedList.Node<T>(null);
         head.setNext(tail);
         tail.setPrevious(head);
         size = 0;
@@ -158,7 +158,7 @@ public class DoublyLinkedList<E> {
      *            the object to check for
      * @return true if it contains the object
      */
-    public boolean contains(E obj) {
+    public boolean contains(T obj) {
         return lastIndexOf(obj) != -1;
     }
 
@@ -171,7 +171,7 @@ public class DoublyLinkedList<E> {
      * @throws IndexOutOfBoundsException
      *                                   if there no node at the given index
      */
-    public E get(int index) {
+    public T get(int index) {
         return getNodeAtIndex(index).getData();
     }
 
@@ -181,7 +181,7 @@ public class DoublyLinkedList<E> {
      * @param newEntry
      *                 the element to add to the end
      */
-    public void add(E newEntry) {
+    public void add(T newEntry) {
         add(size(), newEntry);
     }
 
@@ -198,7 +198,7 @@ public class DoublyLinkedList<E> {
      * @throws IllegalArgumentException
      *                                   if obj is null
      */
-    public void add(int index, E obj) {
+    public void add(int index, T obj) {
         if (index < 0 || size < index) {
             throw new IndexOutOfBoundsException();
         }
@@ -207,14 +207,14 @@ public class DoublyLinkedList<E> {
                     + "objects to a list");
         }
 
-        Node<E> nodeAfter;
+        Node<T> nodeAfter;
         if (index == size) {
             nodeAfter = tail;
         } else {
             nodeAfter = getNodeAtIndex(index);
         }
 
-        Node<E> addition = new Node<E>(obj);
+        Node<T> addition = new Node<T>(obj);
         addition.setPrevious(nodeAfter.previous());
         addition.setNext(nodeAfter);
         nodeAfter.previous().setNext(addition);
@@ -228,12 +228,12 @@ public class DoublyLinkedList<E> {
      * @param index
      * @return node at index
      */
-    private Node<E> getNodeAtIndex(int index) {
+    private Node<T> getNodeAtIndex(int index) {
         if (index < 0 || size() <= index) {
             throw new IndexOutOfBoundsException("No element exists at "
                     + index);
         }
-        Node<E> current = head.next(); // as we have a sentinel node
+        Node<T> current = head.next(); // as we have a sentinel node
         for (int i = 0; i < index; i++) {
             current = current.next();
         }
@@ -247,12 +247,12 @@ public class DoublyLinkedList<E> {
      *            the object to look for
      * @return the last position of it. -1 If it is not in the list
      */
-    public int lastIndexOf(E obj) {
+    public int lastIndexOf(T obj) {
         /*
          * We should go from the end of the list as then we an stop once we find
          * the first one
          */
-        Node<E> current = tail.previous();
+        Node<T> current = tail.previous();
         for (int i = size() - 1; i >= 0; i--) {
             if (current.getData().equals(obj)) {
                 return i;
@@ -272,7 +272,7 @@ public class DoublyLinkedList<E> {
      * @return true if successful
      */
     public boolean remove(int index) {
-        Node<E> nodeToBeRemoved = getNodeAtIndex(index);
+        Node<T> nodeToBeRemoved = getNodeAtIndex(index);
         nodeToBeRemoved.previous().setNext(nodeToBeRemoved.next());
         nodeToBeRemoved.next().setPrevious(nodeToBeRemoved.previous());
         size--;
@@ -286,8 +286,8 @@ public class DoublyLinkedList<E> {
      *            the object to remove
      * @return true if the object was found and removed
      */
-    public boolean remove(E obj) {
-        Node<E> current = head.next();
+    public boolean remove(T obj) {
+        Node<T> current = head.next();
         while (!current.equals(tail)) {
             if (current.getData().equals(obj)) {
                 current.previous().setNext(current.next());
@@ -310,9 +310,9 @@ public class DoublyLinkedList<E> {
     public String toString() {
         StringBuilder builder = new StringBuilder("{");
         if (!isEmpty()) {
-            Node<E> currNode = head.next();
+            Node<T> currNode = head.next();
             while (currNode != tail) {
-                E element = currNode.getData();
+                T element = currNode.getData();
                 builder.append(element.toString());
                 if (currNode.next != tail) {
                     builder.append(", ");
@@ -330,21 +330,21 @@ public class DoublyLinkedList<E> {
      *
      * @return new Iterator object
      */
-    public Iterator<E> iterator() {
-        return new DLListIterator<E>();
+    public Iterator<T> iterator() {
+        return new DLListIterator<T>();
     }
 
     /**
      * Defining an iterator for the DLList class.
-     * 
+     *
      * @author Daniel Miles (danielm210)
      * @version 03.27.2023
      *
      * @param <A> Generic type for the iterator class.
      */
-    private class DLListIterator<A> implements Iterator<E> {
+    private class DLListIterator<A> implements Iterator<T> {
 
-        private Node<E> next;
+        private Node<T> next;
         private boolean calledNext;
 
         /**
@@ -373,14 +373,14 @@ public class DoublyLinkedList<E> {
          *                                if there are no nodes left in the list
          */
         @Override
-        public E next() {
+        public T next() {
             if (!hasNext()) {
                 throw new NoSuchElementException(
                         "No nodes are left in the list.");
             }
 
             calledNext = true;
-            E value = next.getData();
+            T value = next.getData();
             next = next.next();
             return value;
         }
