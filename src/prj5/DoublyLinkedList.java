@@ -6,6 +6,13 @@ import java.util.NoSuchElementException;
 /**
  * This provides implementation for some of the LList methods.
  *
+ * Do NOT Delete original authors. Need to give proper credit.
+ * @author Mark Wiggans (mmw125)
+ * @version 3/29/15
+ * @author Eric Williamson
+ * @version 10/30/15
+ * @author maellis1
+ * @version 11/1/15
  * @author Richard Nguyen (richardn03)
  * @version 2023.04.19
  * @author Austin Zary

@@ -2,6 +2,12 @@ package prj5;
 
 import student.TestCase;
 
+/**
+ * Do NOT Delete original authors. Need to give proper credit.
+ * @author Eric
+ * @author maellis1
+ * @version 11-2-15
+ */
 public class DoublyLinkedListTest extends TestCase {
 
     /**
