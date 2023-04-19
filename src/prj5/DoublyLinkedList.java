@@ -331,6 +331,10 @@ public class DoublyLinkedList<T> {
         builder.append("}");
         return builder.toString();
     }
+    
+    public void sort(GenericCompare<T> comp, int start, int end) {
+        // TODO add insertionSort
+    }
 
     /**
      * Iterator method creates Iterator object.
