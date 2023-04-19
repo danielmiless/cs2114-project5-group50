@@ -1,7 +1,5 @@
 package prj5;
 
-import java.util.Comparator;
-
 public class sortByReach implements GenericCompare<Channel> {
 
     @Override

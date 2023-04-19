@@ -333,7 +333,25 @@ public class DoublyLinkedList<T> {
     }
     
     public void sort(GenericCompare<T> comp, int start, int end) {
-        // TODO add insertionSort
+        Node<T> curr = head.next();
+        Node<T> previous;
+        while (curr.next() != null) {
+            previous = curr;
+            curr = curr.next();
+            if (comp.compare(previous.getData(), curr.getData(), start, end) < 0) {
+                Node<T> sortLocater = head.next();
+                while (comp.compare(sortLocater.getData(), curr.getData(), start, end) > 0) {
+                    sortLocater = sortLocater.next();
+                }
+                curr.previous().setNext(curr.next());
+                curr.next().setPrevious(curr.previous());
+                sortLocater.previous().setNext(curr);
+                curr.setPrevious(sortLocater.previous());
+                curr.setNext(sortLocater);
+                sortLocater.setPrevious(curr);
+                curr = previous;
+            }
+        }
     }
 
     /**
@@ -356,14 +374,12 @@ public class DoublyLinkedList<T> {
     private class DLListIterator<A> implements Iterator<T> {
 
         private Node<T> next;
-        private boolean calledNext;
 
         /**
          * Creates a new DLListIterator
          */
         public DLListIterator() {
             next = head.next();
-            calledNext = false;
         }
 
         /**
@@ -390,7 +406,6 @@ public class DoublyLinkedList<T> {
                         "No nodes are left in the list.");
             }
 
-            calledNext = true;
             T value = next.getData();
             next = next.next();
             return value;

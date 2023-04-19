@@ -1,7 +1,5 @@
 package prj5;
 
-import java.util.Comparator;
-
 /**
  * Compares the name of two Channel objects for use in a sort.
  */
