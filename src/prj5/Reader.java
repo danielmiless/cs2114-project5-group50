@@ -21,6 +21,7 @@ public class Reader {
      */
     public Reader(String fileName) throws FileNotFoundException {
         readFile(fileName);
+        channelList = new ChannelList();
     }
 
     /**
