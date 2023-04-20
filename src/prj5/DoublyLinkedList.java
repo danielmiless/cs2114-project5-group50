@@ -335,7 +335,7 @@ public class DoublyLinkedList<T> {
     public void sort(GenericCompare<T> comp, int start, int end) {
         Node<T> curr = head.next();
         Node<T> previous;
-        while (curr.next() != null) {
+        while (curr.next().getData() != null) {
             previous = curr;
             curr = curr.next();
             if (comp.compare(previous.getData(), curr.getData(), start, end) < 0) {
