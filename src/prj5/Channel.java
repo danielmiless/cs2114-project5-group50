@@ -63,6 +63,9 @@ public class Channel {
     }
 
     public double getEngagement(int start, int end) {
+        if (months[end] == null) {
+            return -1; // Avoids nullPointers
+        }
         double comments = 0;
         double likes = 0;
         double followers = (double) (months[end].getFollowers());
@@ -71,8 +74,10 @@ public class Channel {
         }
 
         for (int i = start; i <= end; i++) {
-            comments += (double) (months[i].getComments());
-            likes += (double) (months[i].getLikes());
+            if (months[i] != null) {
+                comments += (double) (months[i].getComments());
+                likes += (double) (months[i].getLikes());
+            }
         }
 
         return ((comments + likes) / followers) * 100;
@@ -84,9 +89,11 @@ public class Channel {
         double views = 0;
 
         for (int i = start; i <= end; i++) {
-            comments += (double) (months[i].getComments());
-            likes += (double) (months[i].getLikes());
-            views += (double) (months[i].getViews());
+            if (months[i] != null) {
+                comments += (double) (months[i].getComments());
+                likes += (double) (months[i].getLikes());
+                views += (double) (months[i].getViews());
+            }
         }
 
         if (views == 0) {
