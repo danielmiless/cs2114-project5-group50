@@ -2,7 +2,7 @@ package prj5;
 
 import java.util.Iterator;
 
-public class ChannelList extends DoublyLinkedList<Channel> {
+public class ChannelList {
     private DoublyLinkedList<Channel> channels;
 
     public ChannelList() {
@@ -27,5 +27,18 @@ public class ChannelList extends DoublyLinkedList<Channel> {
             }
         }
         return null;
+    }
+
+    public void sortByName(int start, int end) {
+        channels.sort(new SortByName(), start, end);
+    }
+    
+    
+    public void sortByEngagement(int start, int end) {
+        channels.sort(new SortByEngagement(), start, end);
+    }
+    
+    public void sortByReach(int start, int end) {
+        channels.sort(new SortByReach(), start, end);
     }
 }

@@ -1,6 +1,6 @@
 package prj5;
 
-public class sortByReach implements GenericCompare<Channel> {
+public class SortByReach implements GenericCompare<Channel> {
 
     @Override
     public int compare(Channel o1, Channel o2, int start, int end) {
