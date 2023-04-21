@@ -2,6 +2,7 @@ package prj5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 /**
@@ -11,6 +12,7 @@ import java.util.Scanner;
 public class Reader {
 
     private ChannelList channelList;
+    private static final DecimalFormat df = new DecimalFormat("0.0");
 
     /**
      * Creates a new reader and sends a given file to be read.
@@ -22,6 +24,7 @@ public class Reader {
     public Reader(String fileName) throws FileNotFoundException {
         channelList = new ChannelList();
         readFile(fileName);
+        intermediateSubmission();
     }
 
     /**
@@ -121,5 +124,66 @@ public class Reader {
             }
         }
         scanner.close();
+    }
+
+    public void intermediateSubmission() {
+        DoublyLinkedList<Channel> byName = channelList.sortByName(0, 2);
+        Channel name1 = byName.get(0);
+        Channel name2 = byName.get(1);
+        Channel name3 = byName.get(2);
+        Channel name4 = byName.get(3);
+        
+        String[] engagements = new String[4];
+        for (int i = 0; i < 4; i++) {
+            if (byName.get(i).getEngagement(0, 2) < 0) {
+                engagements[i] = "N/A";
+            }
+            else {
+                engagements[i] = df.format(byName.get(i).getEngagement(0, 2));
+            }
+        }
+        
+        DoublyLinkedList<Channel> byReach = channelList.sortByReach(0, 2);
+        Channel reach1 = byReach.get(0);
+        Channel reach2 = byReach.get(1);
+        Channel reach3 = byReach.get(2);
+        Channel reach4 = byReach.get(3);
+
+        String[] reach = new String[4];
+        for (int i = 0; i < 4; i++) {
+            if (byReach.get(i).getReach(0, 2) < 0) {
+                reach[i] = "N/A";
+            }
+            else {
+                reach[i] = df.format(byReach.get(i).getReach(0, 2));
+            }
+        }
+        
+        System.out.println(name1.getChannelName());
+        System.out.println("traditional: " + engagements[0]);
+        System.out.println("==========");
+        System.out.println(name2.getChannelName());
+        System.out.println("traditional: " + engagements[1]);
+        System.out.println("==========");
+        System.out.println(name3.getChannelName());
+        System.out.println("traditional: " + engagements[2]);
+        System.out.println("==========");
+        System.out.println(name4.getChannelName());
+        System.out.println("traditional: " + engagements[3]);
+        System.out.println("==========");
+        System.out.println("**********");
+        System.out.println("**********");
+        System.out.println(reach1.getChannelName());
+        System.out.println("reach: " + reach[0]);
+        System.out.println("==========");
+        System.out.println(reach2.getChannelName());
+        System.out.println("reach: " + reach[1]);
+        System.out.println("==========");
+        System.out.println(reach3.getChannelName());
+        System.out.println("reach: " + reach[2]);
+        System.out.println("==========");
+        System.out.println(reach4.getChannelName());
+        System.out.println("reach: " + reach[3]);
+        System.out.println("==========");
     }
 }
