@@ -14,6 +14,13 @@ public class Channel {
     private String country;
     private String mainTopic;
 
+    /**
+     * Channel constructor declaring all fields
+     * @param username string field
+     * @param channelName string field
+     * @param country string field (maybe empty)
+     * @param mainTopic string field
+     */
     public Channel(
             String username,
             String channelName,
