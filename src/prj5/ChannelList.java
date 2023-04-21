@@ -4,6 +4,8 @@ import java.util.Iterator;
 
 /**
  * ChannelList class to hold channels in new doubly linked list
+ * @author Austin Zary, Richard Nguyen, Daniel Miles
+ * @version 2023.04.21
  */
 public class ChannelList {
     private DoublyLinkedList<Channel> channels;
@@ -24,7 +26,8 @@ public class ChannelList {
      * 
      * @param channelName
      *                    The channel name to check for.
-     * @return The channel with matching channel name. Null if no matching channel.
+     * @return The channel with matching channel name.
+     * Null if no matching channel.
      */
     public Channel getChannel(String channelName) {
         Iterator<Channel> iter = channels.iterator();
