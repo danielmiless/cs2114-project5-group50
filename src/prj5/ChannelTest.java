@@ -1,12 +1,17 @@
 package prj5;
 
 /**
- *
+ * Channel tests with empty and temp channels
+ * @author Austin Zary, Richard Nguyen, Daniel Miles
+ * @version 2023.04.21
  */
 public class ChannelTest extends student.TestCase {
     private Channel sports;
     private Channel empty;
 
+    /**
+     * setUp with new sports channel and empty channel
+     */
     public void setUp() {
         sports = new Channel("SCentral", "SportsCentral", "US", "Sports");
         sports.setMonthData(0, 1, 2, 3, 4, 5);
@@ -15,7 +20,9 @@ public class ChannelTest extends student.TestCase {
         empty = new Channel("", "", "", "");
     }
 
-
+    /**
+     * setters and getters for month tests
+     */
     public void testSetAndGetMonthData() {
         assertNull(sports.getMonth()[2]);
 
@@ -33,27 +40,37 @@ public class ChannelTest extends student.TestCase {
         assertEquals(50, sports.getMonth()[0].getViews());
     }
 
-
+    /**
+     * getter for channel field test
+     */
     public void testGetChannelName() {
         assertEquals("SportsCentral", sports.getChannelName());
     }
 
-
+    /**
+     * getter for username field test
+     */
     public void testGetUsername() {
         assertEquals("SCentral", sports.getUsername());
     }
 
-
+    /**
+     * getter for main topic field test
+     */
     public void testGetMainTopic() {
         assertEquals("Sports", sports.getMainTopic());
     }
 
-
+    /**
+     * getter for country field test
+     */
     public void testGetCountry() {
         assertEquals("US", sports.getCountry());
     }
 
-
+    /**
+     * getter for engagement calculation test
+     */
     public void testGetEngagement() {
         // End month is null
         assertEquals(-1.0, sports.getEngagement(0, 3), 0.1);
@@ -76,7 +93,9 @@ public class ChannelTest extends student.TestCase {
         assertEquals(400.0, empty.getEngagement(0, 2), 0.1);
     }
 
-
+    /**
+     * getter for reach calculation test
+     */
     public void testGetReach() {
         // End month is null
         assertEquals(200.0, sports.getReach(0, 3), 0.1);

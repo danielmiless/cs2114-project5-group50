@@ -200,7 +200,8 @@ public class DoublyLinkedList<T> {
      * @param obj
      *              the object to add
      * @throws IndexOutOfBoundsException
-     *                                   if index is less than zero or greater than
+     *                                   if index is
+     *                                   less than zero or greater than
      *                                   size
      * @throws IllegalArgumentException
      *                                   if obj is null
@@ -217,7 +218,8 @@ public class DoublyLinkedList<T> {
         Node<T> nodeAfter;
         if (index == size) {
             nodeAfter = tail;
-        } else {
+        }
+        else {
             nodeAfter = getNodeAtIndex(index);
         }
 

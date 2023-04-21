@@ -4,17 +4,24 @@
 package prj5;
 
 /**
- * 
+ *  ChannelList Test using new channel linked list
+ * @author Austin Zary, Richard Nguyen, Daniel Miles
+ * @version 2023.04.21
  */
 public class ChannelListTest extends student.TestCase {
 
     private ChannelList channels;
 
+    /**
+     * set up with new channelList
+     */
     public void setUp() {
         channels = new ChannelList();
     }
 
-
+    /**
+     * add to list and getters tests
+     */
     public void testAddAndGetChannel() {
         Channel chan1 = new Channel("first", "First", "US", "Stuff");
         Channel chan2 = new Channel("second", "Second", "US", "Things");
@@ -29,15 +36,17 @@ public class ChannelListTest extends student.TestCase {
         assertNull(channels.getChannel("NA"));
     }
 
-
+    /**
+     * name sort test with a,b,b named channel names
+     */
     public void testSortByName() {
-        Channel Alpha = new Channel("alpha", "Alpha", "US", "Stuff");
-        Channel Bravo = new Channel("bravo", "bravo", "", "");
-        Channel Charlie = new Channel("charlie", "Charlie", "", "");
+        Channel alpha = new Channel("alpha", "Alpha", "US", "Stuff");
+        Channel bravo = new Channel("bravo", "bravo", "", "");
+        Channel charlie = new Channel("charlie", "Charlie", "", "");
 
-        channels.add(Charlie);
-        channels.add(Alpha);
-        channels.add(Bravo);
+        channels.add(charlie);
+        channels.add(alpha);
+        channels.add(bravo);
 
         DoublyLinkedList<Channel> sorted = channels.sortByName(0, 0);
 
@@ -46,19 +55,21 @@ public class ChannelListTest extends student.TestCase {
         assertEquals("Charlie", sorted.get(2).getChannelName());
     }
 
-
+    /**
+     * engagement sort test with given engagement formula
+     */
     public void testSortByEngagement() {
-        Channel Alpha = new Channel("alpha", "Alpha", "US", "Stuff");
-        Channel Bravo = new Channel("bravo", "bravo", "", "");
-        Channel Charlie = new Channel("charlie", "Charlie", "", "");
+        Channel alpha = new Channel("alpha", "Alpha", "US", "Stuff");
+        Channel bravo = new Channel("bravo", "bravo", "", "");
+        Channel charlie = new Channel("charlie", "Charlie", "", "");
 
-        Alpha.setMonthData(0, 10, 10, 10, 10, 10);
-        Bravo.setMonthData(0, 10, 20, 0, 20, 0);
-        Charlie.setMonthData(0, 30, 30, 10, 30, 10);
+        alpha.setMonthData(0, 10, 10, 10, 10, 10);
+        bravo.setMonthData(0, 10, 20, 0, 20, 0);
+        charlie.setMonthData(0, 30, 30, 10, 30, 10);
 
-        channels.add(Bravo);
-        channels.add(Charlie);
-        channels.add(Alpha);
+        channels.add(bravo);
+        channels.add(charlie);
+        channels.add(alpha);
 
         DoublyLinkedList<Channel> sorted = channels.sortByEngagement(0, 0);
 
@@ -66,19 +77,22 @@ public class ChannelListTest extends student.TestCase {
         assertEquals("Alpha", sorted.get(1).getChannelName());
         assertEquals("bravo", sorted.get(2).getChannelName());
     }
-    
+
+    /**
+     * sort by reach test with given reach formula
+     */
     public void testSortByReach() {
-        Channel Alpha = new Channel("alpha", "Alpha", "US", "Stuff");
-        Channel Bravo = new Channel("bravo", "bravo", "", "");
-        Channel Charlie = new Channel("charlie", "Charlie", "", "");
+        Channel alpha = new Channel("alpha", "Alpha", "US", "Stuff");
+        Channel bravo = new Channel("bravo", "bravo", "", "");
+        Channel charlie = new Channel("charlie", "Charlie", "", "");
 
-        Alpha.setMonthData(0, 10, 10, 10, 10, 10);
-        Bravo.setMonthData(0, 10, 20, 0, 20, 0);
-        Charlie.setMonthData(0, 30, 30, 10, 30, 10);
+        alpha.setMonthData(0, 10, 10, 10, 10, 10);
+        bravo.setMonthData(0, 10, 20, 0, 20, 0);
+        charlie.setMonthData(0, 30, 30, 10, 30, 10);
 
-        channels.add(Bravo);
-        channels.add(Charlie);
-        channels.add(Alpha);
+        channels.add(bravo);
+        channels.add(charlie);
+        channels.add(alpha);
 
         DoublyLinkedList<Channel> sorted = channels.sortByReach(0, 0);
 
@@ -86,15 +100,18 @@ public class ChannelListTest extends student.TestCase {
         assertEquals("Alpha", sorted.get(1).getChannelName());
         assertEquals("bravo", sorted.get(2).getChannelName());
     }
-    
-    public void testAlreadySortedList() {
-        Channel Alpha = new Channel("alpha", "Alpha", "US", "Stuff");
-        Channel Bravo = new Channel("bravo", "bravo", "", "");
-        Channel Charlie = new Channel("charlie", "Charlie", "", "");
 
-        channels.add(Alpha);
-        channels.add(Bravo);
-        channels.add(Charlie);
+    /**
+     * already sorted list to test no changes
+     */
+    public void testAlreadySortedList() {
+        Channel alpha = new Channel("alpha", "Alpha", "US", "Stuff");
+        Channel bravo = new Channel("bravo", "bravo", "", "");
+        Channel charlie = new Channel("charlie", "Charlie", "", "");
+
+        channels.add(alpha);
+        channels.add(bravo);
+        channels.add(charlie);
 
         DoublyLinkedList<Channel> sorted = channels.sortByName(0, 0);
 

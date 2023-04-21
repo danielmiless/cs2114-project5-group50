@@ -8,10 +8,16 @@ import java.util.Scanner;
 /**
  * The reader class takes the data from the input
  * files and employs other classes on that data.
+ * @author Austin Zary, Richard Nguyen, Daniel Miles
+ * @version 2023.04.21
  */
 public class Reader {
 
     private ChannelList channelList;
+
+    /**
+     * @field df Decimal Format for 0 value
+     */
     private static final DecimalFormat df = new DecimalFormat("0.0");
 
     /**
@@ -126,6 +132,9 @@ public class Reader {
         scanner.close();
     }
 
+    /**
+     * print values for Web-cat reference tests
+     */
     public void intermediateSubmission() {
         DoublyLinkedList<Channel> byName = channelList.sortByName(0, 2);
         Channel name1 = byName.get(0);

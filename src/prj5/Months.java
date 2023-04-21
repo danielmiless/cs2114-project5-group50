@@ -2,6 +2,8 @@ package prj5;
 
 /**
  * Stores the data of a channel for each month.
+ * @author Austin Zary, Richard Nguyen, Daniel Miles
+ * @version 2023.04.21
  */
 public class Months {
 
@@ -25,7 +27,8 @@ public class Months {
      * @param views
      *                  The number of views for the month.
      */
-    public Months(int likes, int posts, int followers, int comments, int views) {
+    public Months(int likes, int posts, int followers,
+                  int comments, int views) {
         this.likes = likes;
         this.posts = posts;
         this.followers = followers;

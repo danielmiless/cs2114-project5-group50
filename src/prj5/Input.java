@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 
 /**
  * The input class is used to run the java application.
+ * @author Austin Zary, Richard Nguyen, Daniel Miles
+ * @version 2023.04.21
  */
 public class Input {
     /**
