@@ -6,6 +6,6 @@ package prj5;
 public class SortByName implements GenericCompare<Channel> {
     @Override
     public int compare(Channel o1, Channel o2, int start, int end) {
-        return o1.getChannelName().compareToIgnoreCase(o2.getChannelName());
+        return o2.getChannelName().compareToIgnoreCase(o1.getChannelName());
     }
 }
