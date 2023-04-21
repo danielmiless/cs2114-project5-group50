@@ -20,8 +20,8 @@ public class Reader {
      * @throws FileNotFoundException
      */
     public Reader(String fileName) throws FileNotFoundException {
-        readFile(fileName);
         channelList = new ChannelList();
+        readFile(fileName);
     }
 
     /**

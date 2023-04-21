@@ -29,16 +29,24 @@ public class ChannelList {
         return null;
     }
 
-    public void sortByName(int start, int end) {
+    public DoublyLinkedList<Channel> sortByName(int start, int end) {
         channels.sort(new SortByName(), start, end);
+        return channels;
     }
-    
-    
-    public void sortByEngagement(int start, int end) {
+
+
+    public DoublyLinkedList<Channel> sortByEngagement(int start, int end) {
         channels.sort(new SortByEngagement(), start, end);
+        return channels;
     }
-    
-    public void sortByReach(int start, int end) {
+
+
+    public DoublyLinkedList<Channel> sortByReach(int start, int end) {
         channels.sort(new SortByReach(), start, end);
+        return channels;
+    }
+
+    public void add(Channel channel) {
+        channels.add(channel);
     }
 }

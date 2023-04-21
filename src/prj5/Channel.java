@@ -62,6 +62,33 @@ public class Channel {
         return channelName;
     }
 
+    /**
+     * 
+     * @return
+     *         The channel's username.
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * 
+     * @return
+     *         The channel's main topic.
+     */
+    public String getMainTopic() {
+        return mainTopic;
+    }
+
+    /**
+     * 
+     * @return
+     *         The channel's country.
+     */
+    public String getCountry() {
+        return country;
+    }
+
     public double getEngagement(int start, int end) {
         if (months[end] == null) {
             return -1; // Avoids nullPointers
