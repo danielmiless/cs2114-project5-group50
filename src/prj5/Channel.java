@@ -3,6 +3,8 @@ package prj5;
 /**
  * The channel class which uses the DoublyLinkedList
  * to store the engagement objects.
+ * @author Austin Zary, Richard Nguyen, Daniel Miles
+ * @version 2023.04.21
  */
 public class Channel {
 
@@ -40,7 +42,8 @@ public class Channel {
      * @param views
      *                  * The number of views in the month.
      */
-    public void setMonthData(int month, int likes, int posts, int followers, int comments, int views) {
+    public void setMonthData(int month, int likes, int posts,
+                             int followers, int comments, int views) {
         months[month] = new Months(likes, posts, followers, comments, views);
     }
 
@@ -89,6 +92,12 @@ public class Channel {
         return country;
     }
 
+    /**
+     * getter for engagement calculation
+     * @param start index
+     * @param end index
+     * @return engagement value for sorting
+     */
     public double getEngagement(int start, int end) {
         if (months[end] == null) {
             return -1; // Avoids nullPointers
@@ -110,6 +119,12 @@ public class Channel {
         return ((comments + likes) / followers) * 100;
     }
 
+    /**
+     * getter for reach calculation
+     * @param start index for iteration
+     * @param end index for iteration
+     * @return reach calculation
+     */
     public double getReach(int start, int end) {
         double comments = 0;
         double likes = 0;

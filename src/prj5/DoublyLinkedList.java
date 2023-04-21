@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * This provides implementation for some of the LList methods.
+ * This provides implementation for some of the LList methods. (from lab 10)
  *
  * Do NOT Delete original authors. Need to give proper credit.
  * @author Mark Wiggans (mmw125)

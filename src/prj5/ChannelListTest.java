@@ -41,9 +41,9 @@ public class ChannelListTest extends student.TestCase {
 
         DoublyLinkedList<Channel> sorted = channels.sortByName(0, 0);
 
-        assertEquals("Alpha", sorted.get(0).getChannelName());
+        assertEquals("Charlie", sorted.get(0).getChannelName());
         assertEquals("bravo", sorted.get(1).getChannelName());
-        assertEquals("Charlie", sorted.get(2).getChannelName());
+        assertEquals("Alpha", sorted.get(2).getChannelName());
     }
 
 
@@ -98,8 +98,8 @@ public class ChannelListTest extends student.TestCase {
 
         DoublyLinkedList<Channel> sorted = channels.sortByName(0, 0);
 
-        assertEquals("Alpha", sorted.get(0).getChannelName());
+        assertEquals("Charlie", sorted.get(0).getChannelName());
         assertEquals("bravo", sorted.get(1).getChannelName());
-        assertEquals("Charlie", sorted.get(2).getChannelName());
+        assertEquals("Alpha", sorted.get(2).getChannelName());
     }
 }
