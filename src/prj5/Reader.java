@@ -57,7 +57,7 @@ public class Reader {
                 case "January":
                     month = 0;
                     break;
-                case "Febraury":
+                case "February":
                     month = 1;
                     break;
                 case "March":
