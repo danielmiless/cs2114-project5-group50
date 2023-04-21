@@ -4,6 +4,7 @@ package prj5;
  * Interface for comparison classes
  * @param <T> type data to compare
  * @author Austin Zary, Richard Nguyen, Daniel Miles
+ * @version 2023.04.21
  */
 public interface GenericCompare<T> {
 

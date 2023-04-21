@@ -333,16 +333,24 @@ public class DoublyLinkedList<T> {
         builder.append("}");
         return builder.toString();
     }
-    
+
+    /**
+     * sort method setting all pointers for linked list
+     * @param comp GenericCompare object with T object
+     * @param start index for iteration
+     * @param end index for iteration
+     */
     public void sort(GenericCompare<T> comp, int start, int end) {
         Node<T> curr = head.next();
         Node<T> previous;
         while (curr.next().getData() != null) {
             previous = curr;
             curr = curr.next();
-            if (comp.compare(previous.getData(), curr.getData(), start, end) < 0) {
+            if (comp.compare(previous.getData(),
+                    curr.getData(), start, end) < 0) {
                 Node<T> sortLocater = head.next();
-                while (comp.compare(sortLocater.getData(), curr.getData(), start, end) > 0) {
+                while (comp.compare(sortLocater.getData(),
+                        curr.getData(), start, end) > 0) {
                     sortLocater = sortLocater.next();
                 }
                 curr.previous().setNext(curr.next());

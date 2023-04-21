@@ -3,6 +3,7 @@ package prj5;
 /**
  * sort class by reach returning compareTo value
  * @author Austin Zary, Richard Nugyen, Daniel Miles
+ * @version 2023.04.21
  */
 public class SortByReach implements GenericCompare<Channel> {
 
