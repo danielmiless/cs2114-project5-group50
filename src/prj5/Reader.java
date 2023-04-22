@@ -30,6 +30,7 @@ public class Reader {
     public Reader(String fileName) throws FileNotFoundException {
         channelList = new ChannelList();
         readFile(fileName);
+        GUI window = new GUI(this);
         intermediateSubmission();
     }
 
