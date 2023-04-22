@@ -34,14 +34,29 @@ public class GUI {
      */
     public GUI(Reader reader) {
         window = new Window("Social Media Vis");
-        window.setSize((int) (500 * DISPLAY_FACTOR), (int) (500 * DISPLAY_FACTOR));
+        window.setSize(700, 500);
 
         this.reader = reader;
         sortChannelName = new Button("Sort by Channel Name");
         sortEngagement = new Button("Sort by Engagement Rate");
         quit = new Button("Quit");
+        quit.onClick(this, "clickedQuit");
         window.addButton(sortChannelName, WindowSide.NORTH);
         window.addButton(sortEngagement, WindowSide.NORTH);
         window.addButton(quit, WindowSide.NORTH);
+
+        traditionalEngagement = new Button("Traditional Engagement Rate");
+        reachEngagement = new Button("Reach Engagement Rate");
+        window.addButton(traditionalEngagement, WindowSide.WEST);
+        window.addButton(reachEngagement, WindowSide.WEST);
+
+        january = new Button("January");
+        february = new Button("February");
+        march = new Button("March");
+        firstQuarter = new Button("First Quarter(Jan - March)");
+        window.addButton(january, WindowSide.SOUTH);
+        window.addButton(march, WindowSide.SOUTH);
+        window.addButton(february, WindowSide.SOUTH);
+        window.addButton(firstQuarter, WindowSide.SOUTH);
     }
 }
