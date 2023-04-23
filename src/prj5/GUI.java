@@ -59,4 +59,41 @@ public class GUI {
         window.addButton(february, WindowSide.SOUTH);
         window.addButton(firstQuarter, WindowSide.SOUTH);
     }
+
+    public void clickedQuit(Button button) {
+        System.exit(0);
+    }
+
+    public void clickedJanuary(Button button) {
+
+    }
+
+    public void clickedFebruary(Button button) {
+
+    }
+
+    public void clickedMarch(Button button) {
+
+    }
+
+    public void clickedFirstQuarter(Button button) {
+
+    }
+
+    public void clickedSortByEngagement(Button button) {
+
+    }
+
+    public void clickedSortByChannel(Button button) {
+
+    }
+
+    public void clickedTradEngageRate(Button button) {
+
+    }
+
+    public void clickedReachEngageRate(Button button) {
+
+    }
+
 }
