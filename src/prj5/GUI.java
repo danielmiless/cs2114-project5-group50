@@ -6,6 +6,7 @@ import cs2.Shape;
 import cs2.Window;
 
 import java.awt.*;
+import java.text.DecimalFormat;
 
 /**
  * The GUI class contains all graphical user
@@ -14,6 +15,9 @@ import java.awt.*;
  * @version 2023.04.21
  */
 public class GUI {
+
+    private static final DecimalFormat df = new DecimalFormat("0.0");
+
     private Window window;
     private Reader reader;
     private Button quit;
@@ -85,7 +89,21 @@ public class GUI {
     }
 
     public void clickedSortByChannel(Button button) {
+        DoublyLinkedList<Channel> byName = reader.getChannelList().sortByName(0, 2);
+        Channel name1 = byName.get(0);
+        Channel name2 = byName.get(1);
+        Channel name3 = byName.get(2);
+        Channel name4 = byName.get(3);
 
+        String[] engagements = new String[4];
+        for (int i = 0; i < 4; i++) {
+            if (byName.get(i).getEngagement(0, 2) < 0) {
+                engagements[i] = "N/A";
+            }
+            else {
+                engagements[i] = df.format(byName.get(i).getEngagement(0, 2));
+            }
+        }
     }
 
     public void clickedTradEngageRate(Button button) {
@@ -93,6 +111,26 @@ public class GUI {
     }
 
     public void clickedReachEngageRate(Button button) {
+
+    }
+
+    public void updateWindow() {
+
+    }
+
+    public void updateBars() {
+
+    }
+
+    public void updateLabels() {
+
+    }
+
+    public void updateValues() {
+
+    }
+
+    public void updateText() {
 
     }
 

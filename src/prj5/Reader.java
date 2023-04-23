@@ -134,6 +134,14 @@ public class Reader {
     }
 
     /**
+     * ChannelList field getter
+     * @return ChannelList field
+     */
+    public ChannelList getChannelList() {
+        return this.channelList;
+    }
+
+    /**
      * print values for Web-cat reference tests
      */
     public void intermediateSubmission() {
