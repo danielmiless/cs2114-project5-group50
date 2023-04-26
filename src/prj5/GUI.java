@@ -169,6 +169,7 @@ public class GUI {
         window.removeAllShapes();
 
         // TODO: Fix sizing and window positioning
+        // Also a lot of hard coding that could stand to be fixed
         bars[0] = new Shape((window.getWidth() / 8 - 10), (window.getHeight()
                 / 2) - (int) values[0], 20, (int) values[0]);
         bars[1] = new Shape((2 * window.getWidth() / 8 - 10), (window
