@@ -11,6 +11,7 @@ import java.text.DecimalFormat;
 /**
  * The GUI class contains all graphical user
  * interface elements and processes.
+ * 
  * @author Austin Zary, Richard Nguyen, Daniel Miles
  * @version 2023.04.21
  */
@@ -36,9 +37,11 @@ public class GUI {
     private int endMonth;
     private DoublyLinkedList<Channel> sortedList;
     private Shape[] bars;
+    private double[] values;
 
     /**
      * creates a new media visualization window
+     * 
      * @param reader a reader instance to pull sort
      *               data and channels from
      */
@@ -78,6 +81,7 @@ public class GUI {
         window.addButton(firstQuarter, WindowSide.SOUTH);
 
         bars = new Shape[4];
+        values = new double[4];
 
         sortType = Sort.NAME;
         engagementType = Sort.TRADITIONAL;
@@ -138,47 +142,40 @@ public class GUI {
         switch (sortType) {
             case NAME:
                 sortedList = reader.getChannelList().sortByName(startMonth,
-                    endMonth);
+                        endMonth);
                 break;
             default:
                 switch (engagementType) {
                     case TRADITIONAL:
                         sortedList = reader.getChannelList().sortByEngagement(
-                            startMonth, endMonth);
+                                startMonth, endMonth);
                         break;
                     default:
                         sortedList = reader.getChannelList().sortByReach(
-                            startMonth, endMonth);
+                                startMonth, endMonth);
                         break;
                 }
                 break;
         }
+        updateValues();// Need to call values first b/c other methods depend on the correct value
+
         updateBars();
         updateLabels();
-        updateValues();
         updateText();
     }
 
     public void updateBars() {
         window.removeAllShapes();
-        
-        //TODO: Fix sizing and window positioning
-        bars[0] = new Shape((window.getWidth() / 8 - 10), (window
-            .getHeight() / 2) - (int)sortedList.get(0).getEngagement(startMonth,
-                endMonth), 20, (int)sortedList.get(0).getEngagement(startMonth,
-                    endMonth));
-        bars[1] = new Shape((3 * window.getWidth() / 8 - 10), (window
-            .getHeight() / 2) - (int)sortedList.get(1).getEngagement(startMonth,
-                endMonth), 20, (int)sortedList.get(1).getEngagement(startMonth,
-                    endMonth));
-        bars[2] = new Shape((5 * window.getWidth() / 8 - 10), (window
-            .getHeight() / 2) - (int)sortedList.get(2).getEngagement(startMonth,
-                endMonth), 20, (int)sortedList.get(2).getEngagement(startMonth,
-                    endMonth));
-        bars[3] = new Shape((7 * window.getWidth() / 8 - 10), (window
-            .getHeight() / 2) - (int)sortedList.get(3).getEngagement(startMonth,
-                endMonth), 20, (int)sortedList.get(3).getEngagement(startMonth,
-                    endMonth));
+
+        // TODO: Fix sizing and window positioning
+        bars[0] = new Shape((window.getWidth() / 8 - 10), (window.getHeight()
+                / 2) - (int) values[0], 20, (int) values[0]);
+        bars[1] = new Shape((2 * window.getWidth() / 8 - 10), (window
+                .getHeight() / 2) - (int) values[1], 20, (int) values[1]);
+        bars[2] = new Shape((3 * window.getWidth() / 8 - 10), (window
+                .getHeight() / 2) - (int) values[2], 20, (int) values[2]);
+        bars[3] = new Shape((4 * window.getWidth() / 8 - 10), (window
+                .getHeight() / 2) - (int) values[3], 20, (int) values[3]);
 
         window.addShape(bars[0]);
         window.addShape(bars[1]);
@@ -187,15 +184,30 @@ public class GUI {
     }
 
     public void updateLabels() {
-
+        // TODO: Display proper names under the bars
     }
 
     public void updateValues() {
+        switch (engagementType) {
+            case TRADITIONAL:
+                for (int i = 0; i < 4; i++) {
+                    values[i] = sortedList.get(i).getEngagement(startMonth,
+                            endMonth);
+                }
+                break;
+            default:
+                for (int i = 0; i < 4; i++) {
+                    values[i] = sortedList.get(i).getReach(startMonth,
+                            endMonth);
+                }
+                break;
+        }
 
+        // TODO: Display values under the bars
     }
 
     public void updateText() {
-
+        // TODO: Display current information in top left
     }
 
 }
