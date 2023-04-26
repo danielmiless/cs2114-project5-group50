@@ -42,7 +42,9 @@ public class GUI {
 
         this.reader = reader;
         sortChannelName = new Button("Sort by Channel Name");
+        sortChannelName.onClick(this, "clickedSortByChannel");
         sortEngagement = new Button("Sort by Engagement Rate");
+        sortEngagement.onClick(this, "clickedSortByEngagement");
         quit = new Button("Quit");
         quit.onClick(this, "clickedQuit");
         window.addButton(sortChannelName, WindowSide.NORTH);
@@ -50,14 +52,20 @@ public class GUI {
         window.addButton(quit, WindowSide.NORTH);
 
         traditionalEngagement = new Button("Traditional Engagement Rate");
+        traditionalEngagement.onClick(this, "clickedTradEngageRate");
         reachEngagement = new Button("Reach Engagement Rate");
+        reachEngagement.onClick(this, "clickedReachEngageRate");
         window.addButton(traditionalEngagement, WindowSide.WEST);
         window.addButton(reachEngagement, WindowSide.WEST);
 
         january = new Button("January");
+        january.onClick(this, "clickedJanuary");
         february = new Button("February");
+        february.onClick(this, "clickedFebruary");
         march = new Button("March");
+        march.onClick(this, "clickedMarch");
         firstQuarter = new Button("First Quarter(Jan - March)");
+        firstQuarter.onClick(this, "clickedFirstQuarter");
         window.addButton(january, WindowSide.SOUTH);
         window.addButton(march, WindowSide.SOUTH);
         window.addButton(february, WindowSide.SOUTH);
