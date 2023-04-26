@@ -30,6 +30,12 @@ public class GUI {
     private Button march;
     private Button firstQuarter;
     private static final double DISPLAY_FACTOR = 1.5;
+    private Sort sortType;
+    private Sort engagementType;
+    private int startMonth;
+    private int endMonth;
+    private DoublyLinkedList<Channel> sortedList;
+    private Shape[] bars;
 
     /**
      * creates a new media visualization window
@@ -70,6 +76,14 @@ public class GUI {
         window.addButton(march, WindowSide.SOUTH);
         window.addButton(february, WindowSide.SOUTH);
         window.addButton(firstQuarter, WindowSide.SOUTH);
+
+        bars = new Shape[4];
+
+        sortType = Sort.NAME;
+        engagementType = Sort.TRADITIONAL;
+        startMonth = 0;
+        endMonth = 2;
+        updateWindow();
     }
 
     public void clickedQuit(Button button) {
@@ -77,57 +91,99 @@ public class GUI {
     }
 
     public void clickedJanuary(Button button) {
-
+        startMonth = 0;
+        endMonth = 0;
+        updateWindow();
     }
 
     public void clickedFebruary(Button button) {
-
+        startMonth = 1;
+        endMonth = 1;
+        updateWindow();
     }
 
     public void clickedMarch(Button button) {
-
+        startMonth = 2;
+        endMonth = 2;
+        updateWindow();
     }
 
     public void clickedFirstQuarter(Button button) {
-
+        startMonth = 0;
+        endMonth = 2;
+        updateWindow();
     }
 
     public void clickedSortByEngagement(Button button) {
-
+        sortType = Sort.ENGAGEMENT;
+        updateWindow();
     }
 
     public void clickedSortByChannel(Button button) {
-        DoublyLinkedList<Channel> byName = reader.getChannelList().sortByName(0, 2);
-        Channel name1 = byName.get(0);
-        Channel name2 = byName.get(1);
-        Channel name3 = byName.get(2);
-        Channel name4 = byName.get(3);
-
-        String[] engagements = new String[4];
-        for (int i = 0; i < 4; i++) {
-            if (byName.get(i).getEngagement(0, 2) < 0) {
-                engagements[i] = "N/A";
-            }
-            else {
-                engagements[i] = df.format(byName.get(i).getEngagement(0, 2));
-            }
-        }
+        sortType = Sort.NAME;
+        updateWindow();
     }
 
     public void clickedTradEngageRate(Button button) {
-
+        engagementType = Sort.TRADITIONAL;
+        updateWindow();
     }
 
     public void clickedReachEngageRate(Button button) {
-
+        engagementType = Sort.REACH;
+        updateWindow();
     }
 
     public void updateWindow() {
-
+        switch (sortType) {
+            case NAME:
+                sortedList = reader.getChannelList().sortByName(startMonth,
+                    endMonth);
+                break;
+            default:
+                switch (engagementType) {
+                    case TRADITIONAL:
+                        sortedList = reader.getChannelList().sortByEngagement(
+                            startMonth, endMonth);
+                        break;
+                    default:
+                        sortedList = reader.getChannelList().sortByReach(
+                            startMonth, endMonth);
+                        break;
+                }
+                break;
+        }
+        updateBars();
+        updateLabels();
+        updateValues();
+        updateText();
     }
 
     public void updateBars() {
+        window.removeAllShapes();
+        
+        //TODO: Fix sizing and window positioning
+        bars[0] = new Shape((window.getWidth() / 8 - 10), (window
+            .getHeight() / 2) - (int)sortedList.get(0).getEngagement(startMonth,
+                endMonth), 20, (int)sortedList.get(0).getEngagement(startMonth,
+                    endMonth));
+        bars[1] = new Shape((3 * window.getWidth() / 8 - 10), (window
+            .getHeight() / 2) - (int)sortedList.get(1).getEngagement(startMonth,
+                endMonth), 20, (int)sortedList.get(1).getEngagement(startMonth,
+                    endMonth));
+        bars[2] = new Shape((5 * window.getWidth() / 8 - 10), (window
+            .getHeight() / 2) - (int)sortedList.get(2).getEngagement(startMonth,
+                endMonth), 20, (int)sortedList.get(2).getEngagement(startMonth,
+                    endMonth));
+        bars[3] = new Shape((7 * window.getWidth() / 8 - 10), (window
+            .getHeight() / 2) - (int)sortedList.get(3).getEngagement(startMonth,
+                endMonth), 20, (int)sortedList.get(3).getEngagement(startMonth,
+                    endMonth));
 
+        window.addShape(bars[0]);
+        window.addShape(bars[1]);
+        window.addShape(bars[2]);
+        window.addShape(bars[3]);
     }
 
     public void updateLabels() {
