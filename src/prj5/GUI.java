@@ -5,6 +5,7 @@ import cs2.Button;
 import cs2.Shape;
 import cs2.Window;
 
+import student.TestableRandom;
 import java.awt.*;
 import java.text.DecimalFormat;
 
@@ -176,6 +177,16 @@ public class GUI {
                 .getHeight() / 2) - (int) values[2], 20, (int) values[2]);
         bars[3] = new Shape((4 * window.getWidth() / 8 - 10), (window
                 .getHeight() / 2) - (int) values[3], 20, (int) values[3]);
+
+        TestableRandom generator = new TestableRandom();
+        bars[0].setBackgroundColor(new Color(generator.nextInt(256), generator
+            .nextInt(256), generator.nextInt(256)));
+        bars[1].setBackgroundColor(new Color(generator.nextInt(256), generator
+            .nextInt(256), generator.nextInt(256)));
+        bars[2].setBackgroundColor(new Color(generator.nextInt(256), generator
+            .nextInt(256), generator.nextInt(256)));
+        bars[3].setBackgroundColor(new Color(generator.nextInt(256), generator
+            .nextInt(256), generator.nextInt(256)));
 
         window.addShape(bars[0]);
         window.addShape(bars[1]);
