@@ -39,6 +39,9 @@ public class GUI {
     private DoublyLinkedList<Channel> sortedList;
     private Shape[] bars;
     private double[] values;
+    private String monthText;
+    private String sortText;
+    private String engagementText;
 
     /**
      * creates a new media visualization window
@@ -84,10 +87,14 @@ public class GUI {
         bars = new Shape[4];
         values = new double[4];
 
-        sortType = Sort.NAME;
+        sortType = Sort.NAME; //Initial conditions
         engagementType = Sort.TRADITIONAL;
         startMonth = 0;
         endMonth = 2;
+        monthText = "First Quarter (Jan-March)";
+        sortText = "Sorting by Channel Name";
+        engagementText = "Traditional Engagement Rate";
+
         updateWindow();
     }
 
@@ -98,44 +105,52 @@ public class GUI {
     public void clickedJanuary(Button button) {
         startMonth = 0;
         endMonth = 0;
+        monthText = "January";
         updateWindow();
     }
 
     public void clickedFebruary(Button button) {
         startMonth = 1;
         endMonth = 1;
+        monthText = "February";
         updateWindow();
     }
 
     public void clickedMarch(Button button) {
         startMonth = 2;
         endMonth = 2;
+        monthText = "March";
         updateWindow();
     }
 
     public void clickedFirstQuarter(Button button) {
         startMonth = 0;
         endMonth = 2;
+        monthText = "First Quarter (Jan-March)";
         updateWindow();
     }
 
     public void clickedSortByEngagement(Button button) {
         sortType = Sort.ENGAGEMENT;
+        sortText = "Sorting by Engagement Rate";
         updateWindow();
     }
 
     public void clickedSortByChannel(Button button) {
         sortType = Sort.NAME;
+        sortText = "Sorting by Channel Name";
         updateWindow();
     }
 
     public void clickedTradEngageRate(Button button) {
         engagementType = Sort.TRADITIONAL;
+        engagementText = "Traditional Engagement Rate";
         updateWindow();
     }
 
     public void clickedReachEngageRate(Button button) {
         engagementType = Sort.REACH;
+        engagementText = "Reach Engagement Rate";
         updateWindow();
     }
 
@@ -158,8 +173,7 @@ public class GUI {
                 }
                 break;
         }
-        updateValues();// Need to call values first b/c other methods depend on the correct value
-
+        updateValues();// Need to call values first b/c other methods depend on the new value
         updateBars();
         updateLabels();
         updateText();
@@ -169,7 +183,8 @@ public class GUI {
         window.removeAllShapes();
 
         // TODO: Fix sizing and window positioning
-        // Also a lot of hard coding that could stand to be fixed
+        // Also a lot of hard coding that could stand to be changed
+        // Can also change to for loop as done in updateText
         bars[0] = new Shape((window.getWidth() / 8 - 10), (window.getHeight()
                 / 2) - (int) values[0], 20, (int) values[0]);
         bars[1] = new Shape((2 * window.getWidth() / 8 - 10), (window
@@ -196,7 +211,15 @@ public class GUI {
     }
 
     public void updateLabels() {
-        // TODO: Display proper names under the bars
+        TextShape monthLabel = new TextShape(5, 5, monthText, Color.BLACK, 12);
+        TextShape engagementLabel = new TextShape(5, monthLabel.getY()
+            + monthLabel.getHeight() + 5, engagementText, Color.BLACK, 12);
+        TextShape sortLabel = new TextShape(5, engagementLabel.getY()
+            + engagementLabel.getHeight() + 5, sortText, Color.BLACK, 12);
+
+        window.addShape(monthLabel);
+        window.addShape(engagementLabel);
+        window.addShape(sortLabel);
     }
 
     public void updateValues() {
