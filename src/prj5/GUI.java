@@ -217,37 +217,25 @@ public class GUI {
     }
 
     public void updateText() {
-        TextShape text1 = new TextShape(bars[0].getX(), bars[0].getY() + bars[0]
-            .getHeight() + 5, sortedList.get(0).getChannelName(), Color.BLACK,
-            10);
-        TextShape text2 = new TextShape(bars[1].getX(), bars[1].getY() + bars[1]
-            .getHeight() + 5, sortedList.get(1).getChannelName(), Color.BLACK,
-            10);
-        TextShape text3 = new TextShape(bars[2].getX(), bars[2].getY() + bars[2]
-            .getHeight() + 5, sortedList.get(2).getChannelName(), Color.BLACK,
-            10);
-        TextShape text4 = new TextShape(bars[3].getX(), bars[3].getY() + bars[3]
-            .getHeight() + 5, sortedList.get(3).getChannelName(), Color.BLACK,
-            10);
+        TextShape[] channelsText = new TextShape[4];
+        TextShape[] valuesText = new TextShape[4];
 
-        window.addShape(text1);
-        window.addShape(text2);
-        window.addShape(text3);
-        window.addShape(text4);
-        
-        TextShape value1 = new TextShape(bars[0].getX(), bars[0].getY()
-            + bars[0].getHeight() + text1.getHeight() + 5, df.format(values[0]), Color.BLACK, 10);
-        TextShape value2 = new TextShape(bars[1].getX(), bars[1].getY()
-            + bars[1].getHeight() + text2.getHeight() + 5, df.format(values[1]), Color.BLACK, 10);
-        TextShape value3 = new TextShape(bars[2].getX(), bars[2].getY()
-            + bars[2].getHeight() + text3.getHeight() + 5, df.format(values[2]), Color.BLACK, 10);
-        TextShape value4 = new TextShape(bars[3].getX(), bars[3].getY()
-            + bars[3].getHeight() + text4.getHeight() + 5, df.format(values[3]), Color.BLACK, 10);
-
-        window.addShape(value1);
-        window.addShape(value2);
-        window.addShape(value3);
-        window.addShape(value4);
+        for (int i = 0; i < 4; i++) {
+            channelsText[i] = new TextShape(bars[i].getX(), bars[i].getY()
+                + bars[i].getHeight() + 5, sortedList.get(i).getChannelName(),
+                Color.BLACK, 15);
+            valuesText[i] = new TextShape(bars[i].getX(), bars[i].getY()
+                + bars[i].getHeight() + channelsText[i].getHeight() + 5, "",
+                Color.BLACK, 15);
+            if (values[i] < 0) {
+                valuesText[i].setText("N/A");
+            }
+            else {
+                valuesText[i].setText(df.format(values[i]));
+            }
+            window.addShape(channelsText[i]);
+            window.addShape(valuesText[i]);
+        }
     }
 
 }
