@@ -151,7 +151,7 @@ public class GUI {
     public void clickedFirstQuarter(Button button) {
         startMonth = 0;
         endMonth = 2;
-        monthText = "First Quarter (Jan-Mar)";
+        monthText = "First Quarter (Jan-March)";
         updateWindow();
     }
 
