@@ -151,7 +151,7 @@ public class GUI {
     public void clickedFirstQuarter(Button button) {
         startMonth = 0;
         endMonth = 2;
-        monthText = "First Quarter (Jan-March)";
+        monthText = "First Quarter (Jan-Mar)";
         updateWindow();
     }
 
@@ -231,8 +231,6 @@ public class GUI {
      * updates the bars on the window
      */
     public void updateBars() {
-        // TODO: Fix sizing and window positioning
-        // Also a lot of hard coding that could stand to be changed
         window.removeAllShapes();
         
         TestableRandom generator = new TestableRandom();
