@@ -32,6 +32,7 @@ public class GUI {
     private Button march;
     private Button firstQuarter;
     private static final double DISPLAY_FACTOR = 1.5;
+    private static final int REACH_SCALE_FACTOR = 10;
     private Sort sortType;
     private Sort engagementType;
     private int startMonth;
@@ -236,10 +237,20 @@ public class GUI {
         TestableRandom generator = new TestableRandom();
         
         for (int i = 0; i < 4; i++) {
-            bars[i] = new Shape(((i + 1) * window.getWidth() / 8 - 10),
-             (window.getHeight() / 2) - (int) values[i], 20, (int) values[i]);
+            if (engagementType == Sort.REACH) {
+                bars[i] = new Shape(((i + 1) * window.getGraphPanelWidth() / 5 - 10),
+                    (window.getGraphPanelHeight() * 3 / 4) - (int)values[i]
+                        * REACH_SCALE_FACTOR, 20, (int)values[i]
+                            * REACH_SCALE_FACTOR);
+            }
+            else {
+                bars[i] = new Shape(((i + 1) * window.getGraphPanelWidth() / 5 - 10),
+                    (window.getGraphPanelHeight() * 3 / 4) - (int)values[i], 20,
+                    (int)values[i]);
+            }
             bars[i].setBackgroundColor(new Color(generator.nextInt(256),
-             generator.nextInt(256), generator.nextInt(256)));
+                generator.nextInt(256), generator.nextInt(256)));
+            bars[i].setForegroundColor(bars[i].getBackgroundColor());
             
             window.addShape(bars[i]);
         }
@@ -290,10 +301,10 @@ public class GUI {
         for (int i = 0; i < 4; i++) {
             channelsText[i] = new TextShape(bars[i].getX(), bars[i].getY()
                 + bars[i].getHeight() + 5, sortedList.get(i).getChannelName(),
-                Color.BLACK, 15);
+                Color.BLACK, 12);
             valuesText[i] = new TextShape(bars[i].getX(), bars[i].getY()
                 + bars[i].getHeight() + channelsText[i].getHeight() + 5, "",
-                Color.BLACK, 15);
+                Color.BLACK, 12);
             if (values[i] < 0) {
                 valuesText[i].setText("N/A");
             }
@@ -301,6 +312,7 @@ public class GUI {
                 valuesText[i].setText(df.format(values[i]));
             }
             window.addShape(channelsText[i]);
+            window.moveToFront(channelsText[i]);
             window.addShape(valuesText[i]);
         }
     }
