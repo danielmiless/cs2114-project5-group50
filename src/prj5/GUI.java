@@ -80,8 +80,8 @@ public class GUI {
         firstQuarter = new Button("First Quarter(Jan - March)");
         firstQuarter.onClick(this, "clickedFirstQuarter");
         window.addButton(january, WindowSide.SOUTH);
-        window.addButton(march, WindowSide.SOUTH);
         window.addButton(february, WindowSide.SOUTH);
+        window.addButton(march, WindowSide.SOUTH);
         window.addButton(firstQuarter, WindowSide.SOUTH);
 
         bars = new Shape[4];
@@ -98,10 +98,20 @@ public class GUI {
         updateWindow();
     }
 
+    /**
+     * closes the window when the quit button is clicked
+     * 
+     * @param button the button that was clicked
+     */
     public void clickedQuit(Button button) {
         System.exit(0);
     }
 
+    /**
+     * shows only the data from january
+     * 
+     * @param button the button that was clicked
+     */
     public void clickedJanuary(Button button) {
         startMonth = 0;
         endMonth = 0;
@@ -109,6 +119,11 @@ public class GUI {
         updateWindow();
     }
 
+    /**
+     * shows only the data from february
+     * 
+     * @param button the button that was clicked
+     */
     public void clickedFebruary(Button button) {
         startMonth = 1;
         endMonth = 1;
@@ -116,6 +131,11 @@ public class GUI {
         updateWindow();
     }
 
+    /**
+     * shows only the data from march
+     * 
+     * @param button the button that was clicked
+     */
     public void clickedMarch(Button button) {
         startMonth = 2;
         endMonth = 2;
@@ -123,6 +143,11 @@ public class GUI {
         updateWindow();
     }
 
+    /**
+     * shows only the data from the first quarter
+     * 
+     * @param button the button that was clicked
+     */
     public void clickedFirstQuarter(Button button) {
         startMonth = 0;
         endMonth = 2;
@@ -130,30 +155,53 @@ public class GUI {
         updateWindow();
     }
 
+    /**
+     * sorts the data by engagement rate
+     * 
+     * @param button the button that was clicked
+     */
     public void clickedSortByEngagement(Button button) {
         sortType = Sort.ENGAGEMENT;
         sortText = "Sorting by Engagement Rate";
         updateWindow();
     }
 
+    /**
+     * sorts the data by channel name
+     * 
+     * @param button the button that was clicked
+     */
     public void clickedSortByChannel(Button button) {
         sortType = Sort.NAME;
         sortText = "Sorting by Channel Name";
         updateWindow();
     }
 
+    /**
+     * sorts the data by traditional engagement rate
+     * 
+     * @param button the button that was clicked
+     */
     public void clickedTradEngageRate(Button button) {
         engagementType = Sort.TRADITIONAL;
         engagementText = "Traditional Engagement Rate";
         updateWindow();
     }
 
+    /**
+     * sorts the data by reach engagement rate
+     * 
+     * @param button the button that was clicked
+     */
     public void clickedReachEngageRate(Button button) {
         engagementType = Sort.REACH;
         engagementText = "Reach Engagement Rate";
         updateWindow();
     }
 
+    /**
+     * updates the window with the new data
+     */
     public void updateWindow() {
         switch (sortType) {
             case NAME:
@@ -179,37 +227,29 @@ public class GUI {
         updateText();
     }
 
+    /**
+     * updates the bars on the window
+     */
     public void updateBars() {
-        window.removeAllShapes();
-
         // TODO: Fix sizing and window positioning
         // Also a lot of hard coding that could stand to be changed
-        // Can also change to for loop as done in updateText
-        bars[0] = new Shape((window.getWidth() / 8 - 10), (window.getHeight()
-                / 2) - (int) values[0], 20, (int) values[0]);
-        bars[1] = new Shape((2 * window.getWidth() / 8 - 10), (window
-                .getHeight() / 2) - (int) values[1], 20, (int) values[1]);
-        bars[2] = new Shape((3 * window.getWidth() / 8 - 10), (window
-                .getHeight() / 2) - (int) values[2], 20, (int) values[2]);
-        bars[3] = new Shape((4 * window.getWidth() / 8 - 10), (window
-                .getHeight() / 2) - (int) values[3], 20, (int) values[3]);
-
+        window.removeAllShapes();
+        
         TestableRandom generator = new TestableRandom();
-        bars[0].setBackgroundColor(new Color(generator.nextInt(256), generator
-            .nextInt(256), generator.nextInt(256)));
-        bars[1].setBackgroundColor(new Color(generator.nextInt(256), generator
-            .nextInt(256), generator.nextInt(256)));
-        bars[2].setBackgroundColor(new Color(generator.nextInt(256), generator
-            .nextInt(256), generator.nextInt(256)));
-        bars[3].setBackgroundColor(new Color(generator.nextInt(256), generator
-            .nextInt(256), generator.nextInt(256)));
-
-        window.addShape(bars[0]);
-        window.addShape(bars[1]);
-        window.addShape(bars[2]);
-        window.addShape(bars[3]);
+        
+        for (int i = 0; i < 4; i++) {
+            bars[i] = new Shape(((i + 1) * window.getWidth() / 8 - 10),
+             (window.getHeight() / 2) - (int) values[i], 20, (int) values[i]);
+            bars[i].setBackgroundColor(new Color(generator.nextInt(256),
+             generator.nextInt(256), generator.nextInt(256)));
+            
+            window.addShape(bars[i]);
+        }
     }
 
+    /**
+     * updates the labels on the window
+     */
     public void updateLabels() {
         TextShape monthLabel = new TextShape(5, 5, monthText, Color.BLACK, 12);
         TextShape engagementLabel = new TextShape(5, monthLabel.getY()
@@ -222,6 +262,9 @@ public class GUI {
         window.addShape(sortLabel);
     }
 
+    /**
+     * updates the values of the bars
+     */
     public void updateValues() {
         switch (engagementType) {
             case TRADITIONAL:
@@ -239,6 +282,9 @@ public class GUI {
         }
     }
 
+    /**
+     * updates the text on the window
+     */
     public void updateText() {
         TextShape[] channelsText = new TextShape[4];
         TextShape[] valuesText = new TextShape[4];
@@ -260,5 +306,4 @@ public class GUI {
             window.addShape(valuesText[i]);
         }
     }
-
 }
