@@ -293,4 +293,15 @@ public class DoublyLinkedListTest extends TestCase {
         assertNotNull(tempE);
     }
 
+    public void testEnum() {
+        Sort tempname = Sort.NAME;
+        Sort tempname1 = Sort.REACH;
+        Sort tempname2 = Sort.TRADITIONAL;
+        Sort tempname3 = Sort.ENGAGEMENT;
+        assertEquals(Sort.NAME, tempname);
+        assertEquals(Sort.REACH, tempname1);
+        assertEquals(Sort.TRADITIONAL, tempname2);
+        assertEquals(Sort.ENGAGEMENT, tempname3);
+    }
+
 }
